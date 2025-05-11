@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',  # Add whitenoise
+    'whitenoise.runserver_nostatic',
     'contact',
     'rest_framework',
     'corsheaders',

@@ -1,1 +1,1 @@
-web: gunicorn atcbackend.wsgi:application
+web: python atcbackend/atcbackend/wsgi.py

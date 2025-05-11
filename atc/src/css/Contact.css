@@ -1,0 +1,119 @@
+.contact-container {
+    width: 90%j;
+    margin: 0 auto;
+    font-family: outfit;
+}
+
+.contact-form {
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.contact-form h2 {
+    font-size: 300px;
+    font-family: 'Outfit', sans-serif;
+    color: black;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-grid {
+    width:70%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap:80px;
+    margin:0 auto 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 2px solid #444;
+    background-color: transparent;
+    color: black;
+    transition: border-color 0.3s ease;
+    text-transform: uppercase;
+    font-family: outfit;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #0177ff;
+}
+
+.error-input {
+    border-color: #e74c3c !important;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.animated-btn {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
+  width:150px;
+  padding:10px 20px;
+  font-size: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: block;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.animated-btn::before {
+  content: '';
+  position: absolute;
+  top: var(--ypos, 50%);
+  left: var(--xpos, 50%);
+  width: 0;
+  height: 0;
+  background: black;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+  z-index: -1;
+}
+
+.animated-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.animated-btn:hover {
+  color: white;
+}
+
+.animated-btn:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.animated-btn:disabled::before {
+  display: none;
+}
+
+.response-message {
+    font-size: 16px; 
+    font-weight: bold;
+    text-align: center; 
+    margin: 40px;
+    color:green;
+}

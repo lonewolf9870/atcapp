@@ -2,7 +2,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import "../css/Contact.css";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar';
 
 // Validation patterns
 const VALIDATION_PATTERNS = {
@@ -15,7 +15,7 @@ const VALIDATION_PATTERNS = {
 const ERROR_MESSAGES = {
     name: "Please enter a valid name (letters and spaces only).",
     email: "Please enter a valid email address.",
-    phonenumber: "Please enter a valid 10-digit phonenumber number.",
+    phonenumber: "Please enter a valid 10-digit phone number.",
     type: "Please select a business type.",
 };
 
@@ -137,7 +137,7 @@ export default function ContactForm() {
 
     return (
         <div className="contact-container">
-            <Navbar/>
+            <Navbar />
             <form className="contact-form" onSubmit={handleSubmit} noValidate>
                 <h2>Contact</h2>
 

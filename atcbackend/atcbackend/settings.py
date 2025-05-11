@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+ROOT_URLCONF = 'atcbackend.urls'
+WSGI_APPLICATION = 'atcbackend.wsgi.application'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

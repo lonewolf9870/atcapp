@@ -78,10 +78,8 @@ export default function ContactForm() {
                     const response = await fetch("https://atcbackend.onrender.com/api/contacts/", {
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json",
-                            "X-CSRFToken": await getCsrfToken(),  // Add this
-                        },
-                        credentials: "include",  // Add this
+                            "Content-Type": "application/json", 
+                        }, 
                         body: JSON.stringify(formData),
                     });
 

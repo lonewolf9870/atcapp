@@ -79,7 +79,9 @@ export default function ContactForm() {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
+                            "X-CSRFToken": await getCsrfToken(),  // Add this
                         },
+                        credentials: "include",  // Add this
                         body: JSON.stringify(formData),
                     });
 

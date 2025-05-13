@@ -21,5 +21,4 @@ from django.contrib import admin
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('contact.urls')),
-    path('', RedirectView.as_view(url='api/contacts/')),  # Add this line
 ]

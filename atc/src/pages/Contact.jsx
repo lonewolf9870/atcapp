@@ -1,7 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import "../css/Contact.css";
 import { gsap } from "gsap";
-import { Link } from "react-router-dom";
 import Navbar from '../components/Navbar';
 
 // Validation patterns
@@ -65,6 +64,10 @@ export default function ContactForm() {
             e.preventDefault();
             setIsSubmitting(true);
 
+            // Reset response message
+            setResponseMessage("");
+
+            // Validate all fields
             const newErrors = {};
             Object.keys(formData).forEach((key) => {
                 const error = validateField(key, formData[key]);
@@ -75,29 +78,37 @@ export default function ContactForm() {
 
             if (Object.keys(newErrors).length === 0) {
                 try {
+                    // Simple direct POST request without CSRF
                     const response = await fetch("https://atcbackend.onrender.com/api/contacts/", {
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json", 
-                        }, 
+                            "Content-Type": "application/json",
+                        },
                         body: JSON.stringify(formData),
                     });
 
-                    const data = await response.json();
+                    // Log the full response for debugging
+                    console.log("Response status:", response.status);
+                    const responseText = await response.text();
+                    console.log("Response text:", responseText);
+
+                    // Try to parse JSON if possible
+                    let data;
+                    try {
+                        data = JSON.parse(responseText);
+                    } catch (e) {
+                        console.log("Response is not JSON");
+                        data = { message: "Received non-JSON response from server" };
+                    }
 
                     if (response.ok) {
                         setResponseMessage("Form submitted successfully!");
                         setFormData({ name: "", email: "", phonenumber: "", type: "" });
-
-                        setTimeout(() => {
-                            setResponseMessage("");
-                        }, 3000);
                     } else {
-                        if (data.message) {
+                        if (data && data.message) {
                             setResponseMessage(data.message);
-                            setFormData({ name: "", email: "", phonenumber: "", type: "" });
                         } else {
-                            setErrors(data);
+                            setResponseMessage(`Server error: ${response.status}`);
                         }
                     }
                 } catch (error) {
@@ -141,7 +152,11 @@ export default function ContactForm() {
             <form className="contact-form" onSubmit={handleSubmit} noValidate>
                 <h2>Contact</h2>
 
-                {responseMessage && <p className="response-message">{responseMessage}</p>}
+                {responseMessage && (
+                    <p className="response-message">
+                        {responseMessage}
+                    </p>
+                )}
 
                 <div className="form-grid">
                     {["name", "email", "phonenumber"].map((field) => (

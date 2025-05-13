@@ -89,24 +89,45 @@ REST_FRAMEWORK = {
 }
 
 # CORS Settings
+# Add or update these settings in your settings.py
+
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
-    'https://atcapp.onrender.com'
+    'https://atcapp.onrender.com',
+    # Add other origins as needed
 ]
+
+# Allow credentials
 CORS_ALLOW_CREDENTIALS = True
 
-# Security headers for production
+# Allow specific headers
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+# Important: Set these settings to avoid CSRF issues when you're using CORS
+CSRF_TRUSTED_ORIGINS = [
+    'https://atcapp.onrender.com',
+    'http://localhost:5173',
+    # Add other origins as needed
+]
+
+# If you're using sessions, ensure the session cookie settings don't interfere
+SESSION_COOKIE_SAMESITE = 'None' if not DEBUG else 'Lax'
+CSRF_COOKIE_SAMESITE = 'None' if not DEBUG else 'Lax'
+
+# Only set secure if served over HTTPS
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    SECURE_HSTS_SECONDS = 31536000  # 1 year
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_BROWSER_XSS_FILTER = True
-    X_FRAME_OPTIONS = 'DENY'
 
 # Other settings
 ROOT_URLCONF = 'atcbackend.urls'

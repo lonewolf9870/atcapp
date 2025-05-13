@@ -39,7 +39,7 @@ export default function ContactForm() {
 
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [responseMessage, setResponseMessage] = useState(""); // For success or error messages
+    const [responseMessage, setResponseMessage] = useState("");
     const animatedBtnRef = useRef(null);
 
     const validateField = useCallback((name, value) => {

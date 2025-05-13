@@ -39,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://user:password@localhost:5432/mydb')
 
 # Database configuration
 DATABASES = {

@@ -75,7 +75,7 @@ export default function ContactForm() {
 
             if (Object.keys(newErrors).length === 0) {
                 try {
-                    const response = await fetch("https://atcbackend.onrender.com/api/contacts/", {
+                    const response = await fetch("https://atcbackend.onrender.com/contacts/", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
